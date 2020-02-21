@@ -1,10 +1,12 @@
 <?php 
 
     include "./database.php";
+
+    include "./pwd.php";
     
     $DB_DSN = 'localhost';
     $DB_USER = 'root';
-    $DB_PASSWORD = 'coding01';
+    global $DB_PASSWORD; 
     $DB_NAME = 'Matcha';
     //connect to the newly created database
     try {
@@ -24,7 +26,7 @@
     . "firstname varchar(100) NOT NULL UNIQUE,"
     . "lastname varchar(100) NOT NULL UNIQUE,"
     . "email varchar(100) NOT NULL UNIQUE,"
-    . "password varchar(100) NOT NULL,"
+    . "pwd varchar(100) NOT NULL,"
     . "token varchar(100) NOT NULL,"
     . "notify varchar(100) NOT NULL DEFAULT 1,"
     . "isActive varchar(100) NOT NULL DEFAULT 0,"

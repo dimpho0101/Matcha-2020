@@ -40,12 +40,16 @@
             }   
         } else{
             try {
-                $signup = $conn->prepare("INSERT INTO users(username, email, `password`, token)VALUES (:username, :email, :pwd, :token)");
-                $signup->bindParam(':username', $user[0]);
-                $signup->bindParam(':email', $user[1]);
-                $signup->bindParam(':pwd', $user[2]);
+                $signup = $conn->prepare("INSERT INTO users(username,firstname, lastname, email, pwd, token)VALUES (:username, :email, :pwd, :token)");
+                $signup->bindParam(':username');
+                $signup->bindParam(':firstname', $user[1]);
+                $signup->bindParam(':lastname', $user[2]);
+                $signup->bindParam(':email', $user[3]);
+                $signup->bindParam(':pwd', $user[4]);
                 $signup->bindParam(':token', $token);
                 $signup->execute();
+            var_dump($signup);
+            echo "action is done";
             } catch (Exception $e) {
                 echo 'Error: ' . $e->getMessage();
             }
