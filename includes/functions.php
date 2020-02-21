@@ -91,9 +91,11 @@
             }
         } elseif (isset($_POST['register'])) {
             $username = trim($_POST['username']);
+            $firstname = trim($_POST['username']);
+            $lastname = trim($_POST['username']);
             $email = trim($_POST['email']);
             $password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT, array('cost' => 5));
-            $user = array($username, $email, $password);
+            $user = array($username, $firstname, $lastname, $email, $password);
             signup($user, $conn);
         }elseif (isset($_POST['img'])) {
             saveimg(trim($_POST['key']), trim($_POST['filter']), $conn);
@@ -125,8 +127,11 @@
         }
     }
 
+    /*
+    * Functions for adding
+    */
 
-  //signup function
+    //signup function
     function signup($user, $conn)
     {
         $token = md5(md5(time().$user[1].rand(0,9999)));
@@ -150,16 +155,14 @@
             }   
         } else{
             try {
-                $signup = $conn->prepare("INSERT INTO users(username,firstname, lastname, email, pwd, token)VALUES (:username, :email, :pwd, :token)");
-                $signup->bindParam(':username');
+                $signup = $conn->prepare("INSERT INTO users(username, firstname, lastname,email, `password`, token)VALUES (:username,:firstname, :lastname, :email, :pwd, :token)");
+                $signup->bindParam(':username', $user[0]);
                 $signup->bindParam(':firstname', $user[1]);
                 $signup->bindParam(':lastname', $user[2]);
                 $signup->bindParam(':email', $user[3]);
                 $signup->bindParam(':pwd', $user[4]);
                 $signup->bindParam(':token', $token);
                 $signup->execute();
-            var_dump($signup);
-            echo "action is done";
             } catch (Exception $e) {
                 echo 'Error: ' . $e->getMessage();
             }
@@ -167,7 +170,7 @@
                 regmail($user[1], $token);
                 header('Location: ../index.php?register=true');
             }
-            die('error: '. mysql_error());
+            die();
         }
     }
 

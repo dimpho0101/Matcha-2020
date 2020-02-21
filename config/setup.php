@@ -26,7 +26,7 @@
     . "firstname varchar(100) NOT NULL UNIQUE,"
     . "lastname varchar(100) NOT NULL UNIQUE,"
     . "email varchar(100) NOT NULL UNIQUE,"
-    . "pwd varchar(100) NOT NULL,"
+    . "password varchar(100) NOT NULL,"
     . "token varchar(100) NOT NULL,"
     . "notify varchar(100) NOT NULL DEFAULT 1,"
     . "isActive varchar(100) NOT NULL DEFAULT 0,"
