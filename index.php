@@ -1,7 +1,3 @@
-<?php 
-    include "./includes/header.inc.php";
-
-?>
 
 <div class="index">
             <?php if ($_GET['userexists']): ?>
@@ -31,9 +27,8 @@
             <p class="alert success"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Account Deleted successfully!! Pheeeeeeew!!! finally you are gone</p>
             <?php endif; ?>
 </div>
-
+<!-- 
         <div id="login" class="modal container">
-            <!-- Modal Content -->
                 <form class="modal-content animate" action="./includes/functions.php" method="post">
                     <span onclick="document.getElementById('login').style.display='none'"
                     class="close" title="Close Modal">&times;</span>
@@ -50,7 +45,7 @@
                         <span class="psw">Forgot <a href="#pwdreset" onclick="document.getElementById('pwdreset').style.display='block';document.getElementById('login').style.display='none'">password?</a></span>
                     </div>
                 </form>
-            </div>
+            </div> -->
 
     <!-- Signup-->
     <div id="signup" class="modal container">
@@ -97,4 +92,3 @@
             </div>
         </form>
     </div> 
-    <!-- End Modal forms -->

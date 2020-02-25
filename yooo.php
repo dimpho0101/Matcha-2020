@@ -91,11 +91,11 @@
             }
         } elseif (isset($_POST['register'])) {
             $username = trim($_POST['username']);
-            $firstname = trim($_POST['firstname']);
-            $lastname = trim($_POST['lastname']);
+            $firstname = trim($_POST['username']);
+            $lastname = trim($_POST['username']);
             $email = trim($_POST['email']);
             $password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT, array('cost' => 5));
-            $user = array($username, $firstname, $lastname, $email, $password );
+            $user = array($username, $firstname, $lastname, $email, $password);
             signup($user, $conn);
         }elseif (isset($_POST['img'])) {
             saveimg(trim($_POST['key']), trim($_POST['filter']), $conn);
@@ -138,7 +138,7 @@
         //check if user exists
         try {
             $check = $conn->prepare('SELECT * FROM users WHERE email = :email OR username = :username');
-            $check->bindParam(':email', $user[3]);
+            $check->bindParam(':email', $user[1]);
             $check->bindParam(':username', $user[0]);
             $check->execute();
         } catch (Exception $e) {
@@ -155,7 +155,7 @@
             }   
         } else{
             try {
-                $signup = $conn->prepare("INSERT INTO users(username, firstname, lastname, email, `password`, token)VALUES (:username, :firstname, :lastname, :email, :pwd, :token)");
+                $signup = $conn->prepare("INSERT INTO users(username, firstname, lastname,email, `password`, token)VALUES (:username,:firstname, :lastname, :email, :pwd, :token)");
                 $signup->bindParam(':username', $user[0]);
                 $signup->bindParam(':firstname', $user[1]);
                 $signup->bindParam(':lastname', $user[2]);
@@ -166,13 +166,12 @@
             } catch (Exception $e) {
                 echo 'Error: ' . $e->getMessage();
             }
-            if ($signup) {
-                regmail($user[3], $token);
-                header('Location: ../index.php?register=true');
-            }
+            // if ($signup) {
+            //     regmail($user[1], $token);
+            //     header('Location: ../index.php?register=true');
+            // }
             die();
         }
     }
-
 
     ?>
