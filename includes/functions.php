@@ -127,6 +127,37 @@
         }
     }
 
+function regmail($email, $token) {
+        $to = $email;
+        
+        // Subject
+        $subject = 'Activate your Camagru account';
+
+        // Message
+        $message = '
+        <html>
+        <head>
+        <title>Activate your Camagru account</title>
+        </head>
+        <body>
+        <p>To activate your Camagru account click <a href="http://localhost:8080/camagru/includes/activate.php?activate='. $token.'">here.</a></p>
+        </body>
+        </html>
+        ';
+        // To send HTML mail, the Content-type header must be set
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+        // Additional headers
+        $headers[] = 'From: Camagru <no-reply@camagru.africa>';
+        // Mail it
+        if (mail($to, $subject, $message, implode("\r\n", $headers)))
+            return true;
+        else
+            return false;
+    }
+
+
     /*
     * Functions for adding
     */
