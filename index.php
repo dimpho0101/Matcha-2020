@@ -1,32 +1,18 @@
 
 <div class="index">
-            <?php if ($_GET['userexists']): ?>
-            <p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Account already exists!</p>
-            <?php elseif ($_GET['usernameexists']): ?>
-            <p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>The username is taken!</p>
-            <?php elseif ($_GET['login_error']): ?>
-            <?php elseif ($_GET['login_error']): ?>
-            <p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>There was an error signing in!</p>
-            <?php elseif ($_GET['register']): ?>
-            <p class="alert success"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Account created successfully! Follow instructions sent to your email to activate account.</p>
-            <?php elseif ($_GET['active']): ?>
-            <p class="alert success"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Account is aleady activated!</p>
-            <?php elseif ($_GET['activated']): ?>
-            <p class="alert success"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Account successfully activated!</p>
-            <?php elseif ($_GET['inactive']): ?>
-            <p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Account is not activated! Check your email for link</p>
-            <?php elseif ($_GET['loggedin'] == 'false'): ?>
-            <p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>You need to log in to access the dashboard</p>
-            <?php elseif ($_GET['notoken']): ?>
-            <p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>The activation token does not exists!!</p>
-            <?php elseif ($_GET['reset'] == 'false'): ?>
-            <p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Password Reset failed</p>
-            <?php elseif ($_GET['pwdreset']): ?>
-            <p class="alert success"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Password Reset email sent!</p>
-            <?php elseif ($_GET['accountdelete']): ?>
-            <p class="alert success"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Account Deleted successfully!! Pheeeeeeew!!! finally you are gone</p>
-            <?php endif; ?>
-</div>
+            <?php
+            
+            if (isset($_GET['userexists'])){
+                  echo '<p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>Account already exists!</p>';  
+            }
+
+            if (isset($_GET['usernameexists'])){
+                echo '<p class="alert red"><span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>The username is taken!</p>
+                ';  
+          }
+            ?>           
+           
+            </div>
 <!-- 
         <div id="login" class="modal container">
                 <form class="modal-content animate" action="./includes/functions.php" method="post">
